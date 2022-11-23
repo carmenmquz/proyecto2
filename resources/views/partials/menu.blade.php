@@ -9,7 +9,7 @@
             <nav id="nav">
                 <ul>
                     <li><a href="/encuentro" class="active">About</a></li>
-                    <li><a href="#two">Things I Can Do</a></li>
+                    <li><a href="/thingsicando">Things I Can Do</a></li>
                     <li><a href="/accomplishments">A Few Accomplishments</a></li>
                     <li><a href="/contact">Contact</a></li>
                 </ul>
