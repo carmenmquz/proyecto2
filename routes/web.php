@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ServicioController;
-use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,7 +13,9 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', [HomeController::class, 'getHome']);
+Route::get('/', function () {
+    return view('home');
+});
 
 Route::get('/login', function () {
     return view('auth.login');
@@ -25,10 +25,18 @@ Route::get('/logout', function () {
     return 'Sesión cerrada correctamente';
 });
 
-Route::get('/servicios', [ServicioController::class, 'getIndex']);
+Route::get('/servicios', function () {
+    return view('servicios.index');
+});
 
-Route::get('/servicios/show/{id}', [ServicioController::class, 'getShow']);
+Route::get('/servicios/show/{id}', function ($id) {
+    return view('servicios.show', array('id' => $id));
+});
 
-Route::get('/servicios/create', [ServicioController::class, 'getCreate']);
+Route::get('/servicios/create', function () {
+    return view('servicios.create');
+});
 
-Route::get('/servicios/edit/{id}', [ServicioController::class, 'getEdit']);
+Route::get('/servicios/edit/{id}', function ($id) {
+    return view('servicios.edit', array('id' => $id));
+});
