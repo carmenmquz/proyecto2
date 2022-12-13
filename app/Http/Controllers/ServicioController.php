@@ -21,4 +21,22 @@ class ServicioController extends Controller
     public function getEdit($id) {
             return view('servicios.edit', array('id'=>$id));
     }
+
+
+/*private $arrayServicios = array(
+    array(
+        'nombre' => 'Guardería 1',
+        'precio' => '20',
+        'categoria' => 'empresa',
+        'imagen' => '',
+        'descripcion' => 'Guardería en el centro de Cartagena.'
+    ),
+    array(
+        'nombre' => 'Autónomo 1',
+        'precio' => '10',
+        'categoria' => 'particular',
+        'imagen' => '',
+        'descripcion' => 'Se desplaza.'
+    )
+);*/
 }
