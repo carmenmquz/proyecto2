@@ -31,4 +31,6 @@ Route::get('/servicios/show/{id}', [ServicioController::class, 'getShow']);
 
 Route::get('/servicios/create', [ServicioController::class, 'getCreate']);
 
+Route::post('/servicios/create', [ServicioController::class, 'store']);
+
 Route::get('/servicios/edit/{id}', [ServicioController::class, 'getEdit']);
