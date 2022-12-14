@@ -7,11 +7,11 @@ use Illuminate\Http\Request;
 class ServicioController extends Controller
 {
     public function getIndex() {
-        return view('servicios.index');
+        return view('servicios.index', ['arrayServicios' => self::$arrayServicios]);
     }
 
     public function getShow($id) {
-    return view('servicios.show', array('id'=>$id));
+    return view('servicios.show', ['id' => $id, 'servicio' => self::$arrayServicios[$id]]);
     }
 
     public function getCreate() {
@@ -23,7 +23,7 @@ class ServicioController extends Controller
     }
 
 
-/*private $arrayServicios = array(
+private static $arrayServicios = array(
     array(
         'nombre' => 'Guardería 1',
         'precio' => '20',
@@ -38,5 +38,5 @@ class ServicioController extends Controller
         'imagen' => '',
         'descripcion' => 'Se desplaza.'
     )
-);*/
+);
 }
