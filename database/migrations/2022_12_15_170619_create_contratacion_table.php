@@ -14,13 +14,14 @@ class CreateContratacionTable extends Migration
     public function up()
     {
         Schema::create('contratacion', function (Blueprint $table) {
-            $table->string('dni-nif-tutor');
-                $table->foreign('dni-nif-tutor')
-                      ->references('dni-nif')->on('users')
-                      ->onDelete('cascade');
-            /*$table->string('dni-nif-cuidador');
-                $table->foreign('dni-nif-cuidador')
-                      ->references('dni-nif')->on('users')
+            $table->integer('idtutor');
+            $table->string('dninietutor');
+                //$table->foreign('dninietutor')
+                      //->references('dninie')->on('users')
+                      ///->onDelete('cascade');
+            /*$table->string('dniniecuidador');
+                $table->foreign('dniniecuidador')
+                      ->references('dninie')->on('users')
                       ->onDelete('cascade');
             $table->bigInteger('idMenor')->unsigned();
                 $table->foreign('idMenor')
@@ -30,11 +31,10 @@ class CreateContratacionTable extends Migration
             $table->smallInteger('dia');
             $table->string('mes');
             $table->year('anyo');
-            $table->string('hora-inicio');
-            $table->string('hora-fin');
+            $table->string('horainicio');
+            $table->string('horafin');
             $table->timestamps();
-
-            $table->primary(array('dni-nif-tutor','dia','mes','anyo'));
+            $table->primary(array('idtutor','dia','mes','anyo'));
         });
     }
 

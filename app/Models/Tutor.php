@@ -9,6 +9,6 @@ class Tutor extends Model
 {
     use HasFactory;
     protected $table = 'tutor';
-    protected $primaryKey = 'dni-nif';
+    protected $primaryKey = 'id';
     public $timestamps = false;
 }

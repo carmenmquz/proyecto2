@@ -14,10 +14,11 @@ class CreateTutorTable extends Migration
     public function up()
     {
         Schema::create('tutor', function (Blueprint $table) {
-            $table->string('dni-nif')->primary();
-                $table->foreign('dni-nif')
-                      ->references('dni-nif')->on('users')
-                      ->onDelete('cascade');
+            $table->integer('id')->primary();
+            $table->string('dninie')->unique();
+                //$table->foreign('dninie')
+                      //->references('dninie')->on('users')
+                      //->onDelete('cascade');
             $table->smallInteger('edad');
             $table->timestamps();
         });

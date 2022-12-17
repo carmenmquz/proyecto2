@@ -16,30 +16,19 @@
 	            @csrf
 
 	            <div class="form-group">
-	               <label for="nombre">Nombre</label>
-	               <input type="text" name="nombre" id="nombre" class="form-control">
+	               <label for="id">ID</label>
+	               <input type="number" name="id" id="id" class="form-control" value=<?php echo $cuidador->id ?>>
 	            </div>
 
 	            <div class="form-group">
-	            	<label for="precio">Precio</label>
-	               <input type="number" name="precio" id="precio">
+	            	<label for="dninie">DNI/NIE</label>
+	               <input type="text" name="dninie" id="dninie" value=<?php echo $cuidador->dninie ?>>
 	            </div>
 
 	            <div class="form-group">
-	            	<label for="categoria">Categoría</label>
-	               <input type="text" name="categoria" id="categoria" class="form-control">
+	            	<label for="especialidad">Especialidad</label>
+	               <input type="text" name="especialidad" id="especialidad" class="form-control" value=<?php echo $cuidador->especialidad ?>>
 	            </div>
-
-	            <div class="form-group">
-	            	<label for="imagen">Imagen</label>
-	               <input type="text" name="imagen" id="imagen" class="form-control">
-	            </div>
-
-	            <div class="form-group">
-	               <label for="descripcion">Descripción</label>
-	               <textarea name="descripcion" id="descripcion" class="form-control" rows="3"></textarea>
-	            </div>
-
 	            <div class="form-group text-center">
 	               <button type="submit" class="btn btn-primary" style="padding:8px 100px;margin-top:25px;">
 	                   Modificar servicio

@@ -9,6 +9,6 @@ class Contratacion extends Model
 {
     use HasFactory;
     protected $table = 'contratacion';
-    protected $primaryKey = array('dni-nif-tutor','dia','mes','anyo');
+    protected $primaryKey = array('idtutor','dia','mes','anyo');
     public $timestamps = false;
 }
