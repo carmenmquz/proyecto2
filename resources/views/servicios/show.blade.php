@@ -11,16 +11,11 @@
         <img src="https://picsum.photos/200/300/?random" style="height:200px"/>
     </div>
     <div class="col-sm-8">
-
-        Nombre: {{$servicio['nombre']}}
+        ID: {{$cuidador->id}}
         <br>
-        Precio: {{$servicio['precio']}}
+        DNI/NIE: {{$cuidador->dninie}}
         <br>
-        Categoría: {{$servicio['categoria']}}
-        <br>
-        Imagen: {{$servicio['imagen']}}
-        <br>
-        Descripción: {{$servicio['descripcion']}}
+        Especialidad: {{$cuidador->especialidad}}
         <br>
         <br>
     </div>

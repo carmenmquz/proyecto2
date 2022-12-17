@@ -9,6 +9,6 @@ class Cuidador extends Model
 {
     use HasFactory;
     protected $table = 'cuidador';
-    protected $primaryKey = 'dni-nif';
+    protected $primaryKey = 'id';
     public $timestamps = false;
 }

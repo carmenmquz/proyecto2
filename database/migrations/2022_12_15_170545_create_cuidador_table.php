@@ -14,10 +14,11 @@ class CreateCuidadorTable extends Migration
     public function up()
     {
         Schema::create('cuidador', function (Blueprint $table) {
-            $table->string('dni-nif')->primary();
-                $table->foreign('dni-nif')
-                      ->references('dni-nif')->on('users')
-                      ->onDelete('cascade');
+            $table->integer('id')->primary();
+            $table->string('dninie')->unique();
+                //$table->foreign('dninie')
+                      //->references('dninie')->on('users')
+                      //->onDelete('cascade');
             $table->string('especialidad')->nullable();
             $table->timestamps();
         });

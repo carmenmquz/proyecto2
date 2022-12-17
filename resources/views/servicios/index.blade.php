@@ -5,27 +5,23 @@
     @php
     $id = 0;
     @endphp
-       @foreach( $arrayServicios as $servicio )
+       @foreach( $cuidadores as $cuidador )
            @php
                $id++;
            @endphp
        <div class="col-xs-6 col-sm-4 col-md-3 text-center">
 
-           <a href="{{ url('/servicios/show/' . ($id - 1)) }}">
+           <a href="{{ url('/servicios/show/' . $id) }}">
             <br>
             <br>
             <br>
                <img src="https://picsum.photos/200/300/?random" style="height:200px"/>
                <h4 style="min-height:45px;margin:5px 0 10px 0">
-                   Nombre: {{$servicio['nombre']}}
+                   ID: {{$cuidador->id}}
                    <br>
-                   Precio: {{$servicio['precio']}}
+                   DNI/NIE: {{$cuidador->dninie}}
                    <br>
-                   Categoría: {{$servicio['categoria']}}
-                   <br>
-                   Imagen: {{$servicio['imagen']}}
-                   <br>
-                   Descripción: {{$servicio['descripcion']}}
+                   Especialidad: {{$cuidador->especialidad}}
                </h4>
            </a>
 

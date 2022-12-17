@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cuidador;
 use Illuminate\Http\Request;
 
 class ServicioController extends Controller
 {
     public function getIndex() {
-        return view('servicios.index', ['arrayServicios' => self::$arrayServicios]);
+        $cuidadores = Cuidador::all();
+        return view('servicios.index', ['cuidadores' => $cuidadores]);
     }
 
     public function getShow($id) {
-    return view('servicios.show', ['id' => $id, 'servicio' => self::$arrayServicios[$id]]);
+        $cuidador = Cuidador::findOrFail($id);
+        return view('servicios.show', ['cuidador' => $cuidador]);
     }
 
     public function getCreate() {
@@ -19,24 +22,7 @@ class ServicioController extends Controller
     }
 
     public function getEdit($id) {
-            return view('servicios.edit', array('id'=>$id));
+        $cuidador = Cuidador::findOrFail($id);
+        return view('servicios.edit', ['id' => $id, 'cuidador' => $cuidador]);
     }
-
-
-private static $arrayServicios = array(
-    array(
-        'nombre' => 'Guardería 1',
-        'precio' => '20',
-        'categoria' => 'empresa',
-        'imagen' => '',
-        'descripcion' => 'Guardería en el centro de Cartagena.'
-    ),
-    array(
-        'nombre' => 'Autónomo 1',
-        'precio' => '10',
-        'categoria' => 'particular',
-        'imagen' => '',
-        'descripcion' => 'Se desplaza.'
-    )
-);
 }

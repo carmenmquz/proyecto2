@@ -15,9 +15,9 @@ class CreateTutorizaTable extends Migration
     {
         Schema::create('tutoriza', function (Blueprint $table) {
             $table->id();
-            /*$table->string('dni-nif-tutor');
-                $table->foreign('dni-nif-tutor')
-                      ->references('dni-nif')->on('users')
+            /*$table->string('dninietutor');
+                $table->foreign('dninietutor')
+                      ->references('dninie')->on('users')
                       ->onDelete('cascade');
             $table->bigInteger('idMenor')->unsigned();
                 $table->foreign('idMenor')
@@ -25,7 +25,7 @@ class CreateTutorizaTable extends Migration
                       ->onDelete('cascade');*/
             $table->timestamps();
 
-            /*$table->primary(array('dni-nif-tutor','idMenor'));*/
+            /*$table->primary(array('dninietutor','idMenor'));*/
         });
     }
 
