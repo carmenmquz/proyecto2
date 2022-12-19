@@ -25,4 +25,22 @@ class ServicioController extends Controller
         $cuidador = Cuidador::findOrFail($id);
         return view('servicios.edit', ['id' => $id, 'cuidador' => $cuidador]);
     }
+
+    public function putEdit(Request $request, $id) {
+        $cuidador = Cuidador::findOrFail($id);
+        $cuidador->dninie = $request->input('dninie');
+        $cuidador->especialidad = $request->input('especialidad');
+        $cuidador->save();
+        $url = action([ServicioController::class, 'getShow'], ['id' => $cuidador->id]);
+        return redirect($url);
+    }
+
+    public function postCreate(Request $request) {
+        $registroNuevo = new Cuidador();
+        $registroNuevo->dninie = $request->input('dninie');
+        $registroNuevo->especialidad = $request->input('especialidad');
+        $registroNuevo->save();
+        $url = action([ServicioController::class, 'getIndex']);
+        return redirect($url);
+    }
 }

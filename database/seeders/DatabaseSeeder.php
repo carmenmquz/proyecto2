@@ -31,17 +31,14 @@ class DatabaseSeeder extends Seeder
     private function seedCuidador() {
         DB::table('cuidador')->truncate();
         DB::table('cuidador')->insert([
-            'id'=>'1',
             'dninie'=>'12345678X',
             'especialidad'=>'cuidarninyos'
         ]);
         DB::table('cuidador')->insert([
-            'id'=>'2',
             'dninie'=>'98765432Y',
             'especialidad'=>'ensenyarninyos'
         ]);
         DB::table('cuidador')->insert([
-            'id'=>'3',
             'dninie'=>'21894367Z',
             'especialidad'=>'tratarninyos'
         ]);

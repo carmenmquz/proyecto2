@@ -14,7 +14,7 @@ class CreateCuidadorTable extends Migration
     public function up()
     {
         Schema::create('cuidador', function (Blueprint $table) {
-            $table->integer('id')->primary();
+            $table->id();
             $table->string('dninie')->unique();
                 //$table->foreign('dninie')
                       //->references('dninie')->on('users')

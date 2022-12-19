@@ -16,13 +16,8 @@
 	            @csrf
 
 	            <div class="form-group">
-	               <label for="id">ID</label>
-	               <input type="text" name="id" id="id" class="form-control">
-	            </div>
-
-	            <div class="form-group">
 	            	<label for="dninie">DNI/NIE</label>
-	               <input type="number" name="dninie" id="dninie">
+	               <input type="text" name="dninie" id="dninie">
 	            </div>
 
 	            <div class="form-group">
