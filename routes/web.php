@@ -31,7 +31,11 @@ Route::get('/servicios/show/{id}', [ServicioController::class, 'getShow']) -> mi
 
 Route::get('/servicios/create', [ServicioController::class, 'getCreate']) -> middleware(['auth']);
 
+Route::post('/servicios/create', [ServicioController::class, 'postCreate']) -> middleware(['auth']);
+
 Route::get('/servicios/edit/{id}', [ServicioController::class, 'getEdit']) -> middleware(['auth']);
+
+Route::put('/servicios/edit/{id}', [ServicioController::class, 'putEdit']) -> middleware(['auth']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

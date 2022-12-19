@@ -16,18 +16,13 @@
 	            @csrf
 
 	            <div class="form-group">
-	               <label for="id">ID</label>
-	               <input type="number" name="id" id="id" class="form-control" value=<?php echo $cuidador->id ?>>
-	            </div>
-
-	            <div class="form-group">
 	            	<label for="dninie">DNI/NIE</label>
-	               <input type="text" name="dninie" id="dninie" value=<?php echo $cuidador->dninie ?>>
+	               <input type="text" name="dninie" id="dninie" value="{{$cuidador->dninie}}">
 	            </div>
 
 	            <div class="form-group">
 	            	<label for="especialidad">Especialidad</label>
-	               <input type="text" name="especialidad" id="especialidad" class="form-control" value=<?php echo $cuidador->especialidad ?>>
+	               <input type="text" name="especialidad" id="especialidad" class="form-control" value="{{$cuidador->especialidad}}">
 	            </div>
 	            <div class="form-group text-center">
 	               <button type="submit" class="btn btn-primary" style="padding:8px 100px;margin-top:25px;">
