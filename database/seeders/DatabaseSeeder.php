@@ -14,21 +14,17 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        self::seedUsers();
+        self::seedAdministrador();
         $this->command->alert('¡Tabla users inicializada con datos!');
         self::seedCuidador();
         $this->command->alert('¡Tabla cuidador inicializada con datos!');
     }
-    private function seedUsers() {
+    private function seedAdministrador() {
         DB::table('users')->truncate();
         DB::table('users')->insert([
-            'id'=>'1',
-            'dninie'=>'24422082S',
-            'name'=>'admin',
-            'email'=>'proyectoandromeda@gmail.com',
-            'password'=>bcrypt('123456JJc'),
-            'tlf'=>'601228624',
-            'imagen'=>'https://www.cartagena.es/gestion/images/0/158401.jpg'
+            'name'=>env('DB_USERNAME'),
+            'email'=>env('DB_EMAIL'),
+            'password'=>bcrypt(env('DB_PASSWORD'))
         ]);
     }
 

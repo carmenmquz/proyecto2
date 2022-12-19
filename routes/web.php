@@ -17,18 +17,24 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/', [HomeController::class, 'getHome']);
 
-Route::get('/login', function () {
-    return view('auth.login');
-});
+// Route::get('/login', function () {
+//     return view('auth.login');
+// });
 
-Route::get('/logout', function () {
-    return 'Sesión cerrada correctamente';
-});
+// Route::get('/logout', function () {
+//     return 'Sesión cerrada correctamente';
+// });
 
-Route::get('/servicios', [ServicioController::class, 'getIndex']);
+Route::get('/servicios', [ServicioController::class, 'getIndex']) -> middleware(['auth']);
 
-Route::get('/servicios/show/{id}', [ServicioController::class, 'getShow']);
+Route::get('/servicios/show/{id}', [ServicioController::class, 'getShow']) -> middleware(['auth']);
 
-Route::get('/servicios/create', [ServicioController::class, 'getCreate']);
+Route::get('/servicios/create', [ServicioController::class, 'getCreate']) -> middleware(['auth']);
 
-Route::get('/servicios/edit/{id}', [ServicioController::class, 'getEdit']);
+Route::get('/servicios/edit/{id}', [ServicioController::class, 'getEdit']) -> middleware(['auth']);
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
