@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class DropMenorTable extends Migration
+class CreateMenorTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class DropMenorTable extends Migration
      */
     public function up()
     {
-        //
+        Schema::dropIfExists('menor');
     }
 
     /**
@@ -23,6 +23,13 @@ class DropMenorTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::create('menor', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->smallInteger('edad');
+            $table->text('particularidades');
+            $table->timestamps();
+        });
+
     }
 }
