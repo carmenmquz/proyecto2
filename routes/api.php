@@ -31,6 +31,11 @@ Route::any('/{any}', function (ServerRequestInterface $request) {
     ]);
     $api = new Api($config);
     $response = $api->handle($request);
+/* PARA RESTED
+    // $records = json_decode($response->getBody()->getContents())->records;
+    return $response; //()->json($records, 200, $headers = ['X-Total-Count' => $records]);
+*/
+/* Para REACT-ADMIN */
     $records = json_decode($response->getBody()->getContents())->records;
-    return response()->json($records, 200, $headers = ['X-Total-Count' => $records]);
+    return response()->json($records, 200, $headers = ['X-Total-Count' => count($records)]);
 })->where('any', '.*');
