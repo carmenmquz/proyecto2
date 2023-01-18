@@ -36,9 +36,15 @@ Route::any('/{any}', function (ServerRequestInterface $request) {
     return $response; //()->json($records, 200, $headers = ['X-Total-Count' => $records]);
 */
 /* Para REACT-ADMIN */
-    if($request->getMethod() != 'POST'){
+    // if($request->getMethod() != 'POST'){
+    //     $records = json_decode($response->getBody()->getContents())->records;
+    //     $response = response()->json($records, 200, $headers = ['X-Total-Count' => count($records)]);
+    // }
+    try {
         $records = json_decode($response->getBody()->getContents())->records;
         $response = response()->json($records, 200, $headers = ['X-Total-Count' => count($records)]);
+    } catch (\Throwable $th) {
+
     }
     return $response;
 })->where('any', '.*');
