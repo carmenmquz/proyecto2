@@ -20,12 +20,16 @@ use Tqdev\PhpCrudApi\Config\Config;
 */
 
 Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
-    return $request->user();
+    $user = $request->user();
+    $user->fullName = $user->name;
+    return $user;
 });
 
-Route::apiResource('customers', CustomerController::class);
+Route::apiResource('customers', CustomerController::class)->middleware('auth:sanctum'); //para que nos pida autorización
 
 Route::apiResource('users', UserController::class);
+
+//aquí van las rutas de get, post y delete. Algunas están en el 7.1 del libro de laravel
 
 Route::any('/{any}', function (ServerRequestInterface $request) {
     $config = new Config([
@@ -37,6 +41,7 @@ Route::any('/{any}', function (ServerRequestInterface $request) {
     ]);
     $api = new Api($config);
     $response = $api->handle($request);
+
 /* PARA RESTED
     // $records = json_decode($response->getBody()->getContents())->records;
     return $response; //()->json($records, 200, $headers = ['X-Total-Count' => $records]);
