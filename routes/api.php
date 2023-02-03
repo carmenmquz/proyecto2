@@ -7,6 +7,7 @@ use App\Http\Controllers\API\CustomerController;
 use App\Http\Controllers\API\UserController;
 use Tqdev\PhpCrudApi\Api;
 use Tqdev\PhpCrudApi\Config\Config;
+use App\Http\Controllers\API\TokenController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,6 +25,11 @@ Route::middleware(['auth:sanctum'])->get('/user', function (Request $request) {
     $user->fullName = $user->name;
     return $user;
 });
+
+// emite un nuevo token
+Route::post('tokens', [TokenController::class, 'store']);
+// elimina el token del usuario autenticado
+Route::delete('tokens', [TokenController::class, 'destroy'])->middleware('auth:sanctum');
 
 Route::apiResource('customers', CustomerController::class)->middleware('auth:sanctum'); //para que nos pida autorización
 

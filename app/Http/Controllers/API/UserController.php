@@ -15,10 +15,15 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return UserResource::collection(User::paginate());
+        $numElementos = $request->input('numElements');
+
+        $registros = searchByField(array('name', 'email'), User::class);
+
+        return UserResource::collection($registros->paginate($numElementos));
     }
+
 
     /**
      * Store a newly created resource in storage.
