@@ -25,9 +25,13 @@ class CustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return CustomerResource::collection(Customer::paginate());
+        $numElementos = $request->input('numElements');
+
+        $registros = searchByField(array('first_name', 'last_name', 'job_title', 'city', 'country'), Customer::class);
+
+        return CustomerResource::collection($registros->paginate($numElementos));
     }
 
     /**
@@ -38,6 +42,13 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
+
+        if ($request->user()->cannot('create', Customer::class)) {
+            abort(403);
+        }
+
+        $this->authorize('create', Customer::class);
+
         $customer = json_decode($request->getContent(), true);
 
         $customer = Customer::create($customer['data']['attributes']);
@@ -65,6 +76,11 @@ class CustomerController extends Controller
      */
     public function update(Request $request, Customer $customer)
     {
+        if ($request->user()->cannot('update', $customer)) {
+            abort(403);
+        }
+
+        $this->authorize('update', $customer);
         $customerData = json_decode($request->getContent(), true);
         $customer->update($customerData['data']['attributes']);
 
