@@ -8,6 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Role extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'name'
+    ];
+
     /**
      * Los usuarios que tiene asignados un determinado rol.
      */
