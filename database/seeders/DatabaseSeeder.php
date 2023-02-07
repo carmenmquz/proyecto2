@@ -21,8 +21,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-
-
         Model::unguard();
         Schema::disableForeignKeyConstraints();
 
@@ -32,12 +30,8 @@ class DatabaseSeeder extends Seeder
         DB::table('cuidador')->truncate();
         DB::table('roles')->truncate();
 
-
         self::seedAdministrador();
-        $this->command->alert('¡Tabla users inicializada con datos!');
         self::seedCuidador();
-        $this->command->alert('¡Tabla cuidador inicializada con datos!');
-
 
         Role::create([
             'name' => 'Admin',
@@ -59,13 +53,12 @@ class DatabaseSeeder extends Seeder
     }
 
     private function seedAdministrador() {
-        // DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        // DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         DB::table('users')->insert([
             'name'=>env('DB_USERNAME'),
             'email'=>env('DB_EMAIL'),
             'password'=>bcrypt(env('DB_PASSWORD'))
         ]);
+        $this->command->alert('¡Tabla users inicializada con datos!');
     }
 
     private function seedCuidador() {
@@ -81,5 +74,6 @@ class DatabaseSeeder extends Seeder
             'dninie'=>'21894367Z',
             'especialidad'=>'tratarninyos'
         ]);
+        $this->command->alert('¡Tabla cuidador inicializada con datos!');
     }
 }
