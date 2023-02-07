@@ -33,6 +33,11 @@ class DatabaseSeeder extends Seeder
             'email_verified_at' => now()
         ]);
 
+        Role::create([
+            ['name' => 'Admin'],
+            ['name' => 'customer'],
+        ]);
+
         User::factory(10)
         ->has(Customer::factory()
         ->has(Order::factory()->count(3))
