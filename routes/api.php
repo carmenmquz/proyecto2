@@ -35,6 +35,8 @@ Route::apiResource('customers', CustomerController::class)->middleware('auth:san
 
 Route::apiResource('users', UserController::class);
 
+Route::apiResource('orders', OrderController::class)->middleware('auth:sanctum');
+
 //aquí van las rutas de get, post y delete. Algunas están en el 7.1 del libro de laravel
 
 Route::any('/{any}', function (ServerRequestInterface $request) {
