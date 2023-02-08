@@ -55,5 +55,17 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id');
     }
 
+    public function isAdmin() {
+        $roles = $this->roles;
+        $isAdmin = false;
+        foreach($roles as $role){
+            if($role->$name == 'Admin') {
+                $isAdmin = true;
+            }
+        }
+        return $isAdmin;
+        }
+
+
 }
 
