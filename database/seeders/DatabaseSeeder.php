@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
         Model::unguard();
         Schema::disableForeignKeyConstraints();
 
+        DB::table('role_user')->truncate();
         DB::table('orders')->truncate();
         DB::table('customers')->truncate();
         DB::table('users')->truncate();
@@ -33,19 +34,19 @@ class DatabaseSeeder extends Seeder
         self::seedAdministrador();
         self::seedCuidador();
 
-        Role::create([
-            'name' => 'Admin',
-        ]);
-
-        Role::create([
+        $roleCustomer = Role::create([
             'name' => 'Customer'
         ]);
 
-        User::factory(10)
-        ->has(Customer::factory()
-        ->has(Order::factory()->count(3))
-        ->count(2))
-        ->create();
+        $userCustomers = User::factory(10)
+       ->has(Customer::factory()
+       ->has(Order::factory()->count(3))
+       ->count(1))
+       ->create();
+
+       foreach ($userCustomers as $userCustomer) {
+           $userCustomer->roles()->attach($roleCustomer->id);
+       }
 
         Model::reguard();
 
@@ -53,11 +54,19 @@ class DatabaseSeeder extends Seeder
     }
 
     private function seedAdministrador() {
-        DB::table('users')->insert([
-            'name'=>env('DB_USERNAME'),
-            'email'=>env('DB_EMAIL'),
-            'password'=>bcrypt(env('DB_PASSWORD'))
+        $userAdmin = User::create([
+            'name' => env('DB_USERNAME'),
+            'email' => env('DB_EMAIL'),
+            'password' => bcrypt(env('DB_PASSWORD')),
+            'email_verified_at' => now()
         ]);
+
+        $roleAdmin = Role::create([
+            'name' => 'Admin'
+        ]);
+
+        $userAdmin->roles()->attach($roleAdmin->id);
+
         $this->command->alert('¡Tabla users inicializada con datos!');
     }
 
