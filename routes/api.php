@@ -8,6 +8,7 @@ use App\Http\Controllers\API\UserController;
 use Tqdev\PhpCrudApi\Api;
 use Tqdev\PhpCrudApi\Config\Config;
 use App\Http\Controllers\API\TokenController;
+use App\Http\Controllers\API\AvatarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,12 @@ Route::apiResource('customers', CustomerController::class)->middleware('auth:san
 Route::apiResource('users', UserController::class);
 
 Route::apiResource('orders', OrderController::class)->middleware('auth:sanctum');
+
+Route::post('/avatars', [AvatarController::class, 'store'])->middleware('auth:sanctum');
+
+Route::get('/avatars', [AvatarController::class, 'getAvatar'])->middleware('auth:sanctum');
+
+Route::get('/avatars/{user_id}', [AvatarController::class, 'getUserAvatar']);
 
 //aquí van las rutas de get, post y delete. Algunas están en el 7.1 del libro de laravel
 
