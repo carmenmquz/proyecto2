@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class CustomerFactory extends Factory
+class TutorFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,7 +19,8 @@ class CustomerFactory extends Factory
             'last_name' => $this->faker->lastName(),
             'job_title' => $this->faker->word(),
             'city' => $this->faker->city(),
-            'country' => $this->faker->country()
+            'country' => $this->faker->country(),
+            'tlf' => $this->faker->randomNumber(9, true)
         ];
     }
 }

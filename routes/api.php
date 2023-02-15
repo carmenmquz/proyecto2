@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Psr\Http\Message\ServerRequestInterface;
-use App\Http\Controllers\API\CustomerController;
+use App\Http\Controllers\API\TutorController;
 use App\Http\Controllers\API\UserController;
 use Tqdev\PhpCrudApi\Api;
 use Tqdev\PhpCrudApi\Config\Config;
@@ -32,7 +32,7 @@ Route::post('tokens', [TokenController::class, 'store']);
 // elimina el token del usuario autenticado
 Route::delete('tokens', [TokenController::class, 'destroy'])->middleware('auth:sanctum');
 
-Route::apiResource('customers', CustomerController::class)->middleware('auth:sanctum'); //para que nos pida autorización
+Route::apiResource('tutors', TutorController::class)->middleware('auth:sanctum'); //para que nos pida autorización
 
 Route::apiResource('users', UserController::class);
 

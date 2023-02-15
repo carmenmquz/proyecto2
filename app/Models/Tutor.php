@@ -8,7 +8,25 @@ use Illuminate\Database\Eloquent\Model;
 class Tutor extends Model
 {
     use HasFactory;
-    protected $table = 'tutor';
-    protected $primaryKey = 'id';
-    public $timestamps = false;
+    protected $fillable = [
+        'id',
+        'user_id',
+        'first_name',
+        'last_name',
+        'job_title',
+        'city',
+        'country',
+        'tlf'
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'tutor_id');
+    }
+
 }

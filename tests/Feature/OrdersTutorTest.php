@@ -9,17 +9,17 @@ use App\Models\User;
 use Laravel\Sanctum\Sanctum;
 
 
-class OrdersCustomerTest extends TestCase
+class OrdersTutorTest extends TestCase
 {
     /**
      * A basic feature test example.
      *
      * @return void
      */
-    public function test_OrdersCustomer()
+    public function test_OrdersTutor()
     {
         $users = User::factory(2)
-           ->has(Customer::factory()
+           ->has(Tutor::factory()
                ->has(Order::factory()->count(3))
                ->count(1))
            ->create();
@@ -31,7 +31,7 @@ class OrdersCustomerTest extends TestCase
        //$response->dump();
 
        $response->assertStatus(200)
-           ->assertJsonStructure(['data' => ['*' => ['id', 'attributes' => ['id', 'customer_id', 'amount']]]])
+           ->assertJsonStructure(['data' => ['*' => ['id', 'attributes' => ['id', 'tutor_id', 'amount']]]])
            ->assertJsonCount(3, 'data');
 
     }
