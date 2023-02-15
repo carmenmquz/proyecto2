@@ -15,7 +15,7 @@ class CreateMenorTable extends Migration
     {
         Schema::create('menor', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('first_name');
             $table->smallInteger('edad');
             $table->text('particularidades');
             $table->timestamps();

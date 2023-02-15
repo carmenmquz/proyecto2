@@ -21,7 +21,7 @@ class OrderController extends Controller
         if($user->isAdmin()) {
             $orders = Order::all();
         } else {
-            $orders = $user->customer->orders;
+            $orders = $user->tutor->orders;
         }
 
         return OrderResource::collection($orders);

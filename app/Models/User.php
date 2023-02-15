@@ -18,7 +18,8 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'first_name',
+        'last_name',
         'email',
         'password',
     ];
@@ -43,11 +44,11 @@ class User extends Authenticatable
     ];
 
      /**
-     * Devolver el customer asociado.
+     * Devolver el tutor asociado.
      */
-    public function customer()
+    public function tutor()
     {
-        return $this->hasOne(Customer::class, 'user_id');
+        return $this->hasOne(Tutor::class, 'user_id');
     }
 
     public function roles()

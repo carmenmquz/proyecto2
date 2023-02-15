@@ -9,9 +9,9 @@ class Order extends Model
 {
     use HasFactory;
 
-    public function customer()
+    public function tutor()
     {
-        return $this->belongsTo(Customer::class, 'customer_id');
+        return $this->belongsTo(Tutor::class, 'tutor_id');
     }
 
 }
