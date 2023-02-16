@@ -32,21 +32,8 @@ class DatabaseSeeder extends Seeder
         DB::table('roles')->truncate();
 
         self::seedAdministrador();
-        // self::seedCuidador();
-
-        $roleTutor = Role::create([
-            'first_name' => 'Tutor'
-        ]);
-
-        $userTutors = User::factory(10)
-       ->has(Tutor::factory()
-       ->has(Order::factory()->count(3))
-       ->count(1))
-       ->create();
-
-       foreach ($userTutors as $userTutor) {
-           $userTutor->roles()->attach($roleTutor->id);
-       }
+        self::seedTutor();
+        self::seedCuidador();
 
         Model::reguard();
 
@@ -71,19 +58,35 @@ class DatabaseSeeder extends Seeder
         $this->command->alert('¡Tabla users inicializada con datos!');
     }
 
-    // private function seedCuidador() {
-    //     DB::table('cuidador')->insert([
-    //         'dninie'=>'12345678X',
-    //         'especialidad'=>'cuidarninyos'
-    //     ]);
-    //     DB::table('cuidador')->insert([
-    //         'dninie'=>'98765432Y',
-    //         'especialidad'=>'ensenyarninyos'
-    //     ]);
-    //     DB::table('cuidador')->insert([
-    //         'dninie'=>'21894367Z',
-    //         'especialidad'=>'tratarninyos'
-    //     ]);
-    //     $this->command->alert('¡Tabla cuidador inicializada con datos!');
-    // }
+    private function seedTutor() {
+        $userTutors = User::factory(10)
+        ->has(Tutor::factory()
+        ->has(Order::factory()->count(3))
+        ->count(1))
+        ->create();
+
+        $roleTutor = Role::create([
+            'first_name' => 'Tutor'
+        ]);
+
+       foreach ($userTutors as $userTutor) {
+           $userTutor->roles()->attach($roleTutor->id);
+       }
+    }
+
+    private function seedCuidador() {
+        $userCuidadors = User::factory(10)
+        ->has(Cuidador::factory()
+        ->has(Order::factory()->count(3))
+        ->count(1))
+        ->create();
+
+        $roleCuidador = Role::create([
+            'first_name' => 'Cuidador'
+        ]);
+
+       foreach ($userCuidadors as $userCuidador) {
+           $userCuidador->roles()->attach($roleCuidador->id);
+       }
+    }
 }
