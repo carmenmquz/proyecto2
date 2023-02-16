@@ -17,10 +17,10 @@ class TutorFactory extends Factory
         return [
             'first_name' => $this->faker->firstName(),
             'last_name' => $this->faker->lastName(),
-            'job_title' => $this->faker->word(),
-            'city' => $this->faker->city(),
-            'country' => $this->faker->country(),
-            'tlf' => $this->faker->randomNumber(9, true)
+            'direction' => $this->faker->streetAddress(),
+            'email' => $this->faker->email(),
+            'tlf' => $this->faker->randomNumber(9, true),
+            'valoration' => $this->faker->numberBetween(1, 5, true)
         ];
     }
 }
