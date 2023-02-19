@@ -10,6 +10,8 @@ use App\Models\User;
 use App\Models\Tutor;
 use App\Models\Order;
 use App\Models\Role;
+use App\Models\Menor;
+use App\Models\Cuidador;
 
 class DatabaseSeeder extends Seeder
 {
@@ -28,12 +30,14 @@ class DatabaseSeeder extends Seeder
         DB::table('orders')->truncate();
         DB::table('tutors')->truncate();
         DB::table('users')->truncate();
-        DB::table('cuidador')->truncate();
+        DB::table('cuidadors')->truncate();
+        DB::table('menors')->truncate();
         DB::table('roles')->truncate();
 
         self::seedAdministrador();
         self::seedTutor();
         self::seedCuidador();
+        self::seedMenor();
 
         Model::reguard();
 
@@ -59,7 +63,7 @@ class DatabaseSeeder extends Seeder
     }
 
     private function seedTutor() {
-        $userTutors = User::factory(10)
+        $userTutors = User::factory(30)
         ->has(Tutor::factory()
         ->has(Order::factory()->count(3))
         ->count(1))
@@ -75,9 +79,8 @@ class DatabaseSeeder extends Seeder
     }
 
     private function seedCuidador() {
-        $userCuidadors = User::factory(10)
+        $userCuidadors = User::factory(15)
         ->has(Cuidador::factory()
-        ->has(Order::factory()->count(3))
         ->count(1))
         ->create();
 
@@ -87,6 +90,21 @@ class DatabaseSeeder extends Seeder
 
        foreach ($userCuidadors as $userCuidador) {
            $userCuidador->roles()->attach($roleCuidador->id);
+       }
+    }
+
+    private function seedMenor() {
+        $userMenors = User::factory(30)
+        ->has(Menor::factory()
+        ->count(1))
+        ->create();
+
+        $roleMenor = Role::create([
+            'first_name' => 'Menor'
+        ]);
+
+       foreach ($userMenors as $userMenor) {
+           $userMenor->roles()->attach($roleMenor->id);
        }
     }
 }

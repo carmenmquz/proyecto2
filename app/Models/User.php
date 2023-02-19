@@ -51,6 +51,16 @@ class User extends Authenticatable
         return $this->hasOne(Tutor::class, 'user_id');
     }
 
+    public function menor()
+    {
+        return $this->hasOne(Menor::class, 'user_id');
+    }
+
+    public function cuidador()
+    {
+        return $this->hasOne(Cuidador::class, 'user_id');
+    }
+
     public function roles()
     {
         return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id');

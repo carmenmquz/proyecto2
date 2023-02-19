@@ -8,6 +8,19 @@ use Illuminate\Database\Eloquent\Model;
 class Cuidador extends Model
 {
     use HasFactory;
-    protected $table = 'cuidador';
-    public $timestamps = false;
+    protected $fillable = [
+        'id',
+        'user_id',
+        'first_name',
+        'last_name',
+        'direction',
+        'email',
+        'tlf',
+        'valoration'
+    ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

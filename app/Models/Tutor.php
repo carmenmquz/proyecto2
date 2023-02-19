@@ -13,10 +13,10 @@ class Tutor extends Model
         'user_id',
         'first_name',
         'last_name',
-        'job_title',
-        'city',
-        'country',
-        'tlf'
+        'direction',
+        'email',
+        'tlf',
+        'valoration'
     ];
 
     public function user()
@@ -27,6 +27,11 @@ class Tutor extends Model
     public function orders()
     {
         return $this->hasMany(Order::class, 'tutor_id');
+    }
+
+    public function menors() //hasMany significa que cada Tutor puede tener varios Menor
+    {
+        return $this->hasMany(Menor::class, 'tutor_id');
     }
 
 }
