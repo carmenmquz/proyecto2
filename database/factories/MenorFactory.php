@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Tutor;
 
 class MenorFactory extends Factory
 {
@@ -18,7 +19,7 @@ class MenorFactory extends Factory
             'first_name' => $this->faker->firstName(),
             'last_name' => $this->faker->lastName(),
             'edad' => $this->faker->numberBetween(1, 15, true),
-            'tutor_id' => $this->faker->numberBetween(1, 100, true) //¿cómo hacemos que traiga el id de tutor?
+            'tutor_id' => Tutor::all()->random()->id
         ];
     }
 }
