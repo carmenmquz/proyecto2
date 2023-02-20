@@ -18,8 +18,6 @@ class CreateMenorsTable extends Migration
             $table->string('first_name', 50);
             $table->string('last_name', 50)->nullable();
             $table->smallInteger('edad');
-            $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('tutor_id');
             $table->foreign('tutor_id')->references('id')->on('tutors');
             $table->timestamps();
