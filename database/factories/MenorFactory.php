@@ -18,7 +18,7 @@ class MenorFactory extends Factory
         return [
             'first_name' => $this->faker->firstName(),
             'last_name' => $this->faker->lastName(),
-            'edad' => $this->faker->numberBetween(1, 15, true),
+            'edad' => $this->faker->numberBetween(1, 17, true),
             'tutor_id' => Tutor::all()->random()->id
         ];
     }

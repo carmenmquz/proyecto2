@@ -13,8 +13,8 @@ class Cuidador extends Model
         'user_id',
         'first_name',
         'last_name',
-        'direction',
         'email',
+        'direction',
         'tlf',
         'valoration'
     ];
@@ -22,5 +22,10 @@ class Cuidador extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
+    }
+
+    public function contratacion()
+    {
+        return $this->hasMany(Contratacion::class, 'cuidador_id');
     }
 }
