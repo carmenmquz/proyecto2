@@ -20,4 +20,9 @@ class Menor extends Model
     {
         return $this->belongsTo(Tutor::class, 'tutor_id');
     }
+
+    public function contratacion()
+    {
+        return $this->hasMany(Contratacion::class, 'menor_id');
+    }
 }

@@ -17,8 +17,8 @@ class CreateCuidadorsTable extends Migration
             $table->id();
             $table->string('first_name', 50);
             $table->string('last_name', 50)->nullable();
-            $table->string('direction');
             $table->string('email')->unique();
+            $table->string('direction');
             $table->string('tlf', 9)->unique();
             $table->enum('tipo', ['Centro', 'Particular']);
             $table->integer('valoration');
