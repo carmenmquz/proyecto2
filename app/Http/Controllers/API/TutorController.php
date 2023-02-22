@@ -29,7 +29,7 @@ class TutorController extends Controller
     {
         $numElementos = $request->input('numElements');
 
-        $registros = searchByField(array('first_name', 'last_name', 'job_title', 'city', 'country'), Tutor::class);
+        $registros = searchByField(array('first_name', 'last_name', 'email', 'direction', 'tlf', 'valoration'), Tutor::class);
 
         return TutorResource::collection($registros->paginate($numElementos));
     }

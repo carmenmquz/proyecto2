@@ -19,7 +19,7 @@ class UserController extends Controller
     {
         $numElementos = $request->input('numElements');
 
-        $registros = searchByField(array('name', 'email'), User::class);
+        $registros = searchByField(array('first_name', 'last_name', 'email'), User::class);
 
         return UserResource::collection($registros->paginate($numElementos));
     }

@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\OrderResources;
-use App\Models\Order;
+use App\Http\Resources\ContratacionResource;
+use App\Models\Contratacion;
 use Illuminate\Http\Request;
 
-class OrderController extends Controller
+class ContratacionController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,12 +19,12 @@ class OrderController extends Controller
         $user = $request->user();
 
         if($user->isAdmin()) {
-            $orders = Order::all();
+            $contratacions = Contratacion::all();
         } else {
-            $orders = $user->tutor->orders;
+            $contratacions = $user->tutor->contratacions;
         }
 
-        return OrderResource::collection($orders);
+        return ContratacionResource::collection($contratacions);
     }
 
 
@@ -42,10 +42,10 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Order  $order
+     * @param  \App\Models\Contratacion  $contratacion
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show(Contratacion $contratacion)
     {
         //
     }
@@ -54,10 +54,10 @@ class OrderController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Order  $order
+     * @param  \App\Models\Contratacion  $contratacion
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Order $order)
+    public function update(Request $request, Contratacion $contratacion)
     {
         //
     }
@@ -65,10 +65,10 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Order  $order
+     * @param  \App\Models\Contratacion  $contratacion
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order $order)
+    public function destroy(Contratacion $contratacion)
     {
         //
     }

@@ -20,9 +20,10 @@ class TutorResource extends JsonResource
             'attributes' => [
                 'first_name' => $this->first_name,
                 'last_name' => $this->last_name,
-                'job_title' => $this->job_title,
-                'city' => $this->city,
-                'country' => $this->country,
+                'email' => $this->email,
+                'direction' => $this->direction,
+                'tlf' => $this->tlf,
+                'valoration' => $this->valoration,
                 'user_id' => $this->user_id,
                 'user' => new UserResource($this->user),
             ]

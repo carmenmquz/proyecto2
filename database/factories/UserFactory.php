@@ -14,6 +14,7 @@ class UserFactory extends Factory
      */
     public function definition()
     {
+        $this->faker = \Faker\Factory::create('es_ES');
         return [
             'first_name' => $this->faker->firstName(),
             'last_name' => $this->faker->lastName(),

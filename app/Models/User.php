@@ -65,7 +65,7 @@ class User extends Authenticatable
         $roles = $this->roles;
         $isAdmin = false;
         foreach($roles as $role){
-            if($role->$name == 'Admin') {
+            if($role->first_name == 'Admin') {
                 $isAdmin = true;
             }
         }
