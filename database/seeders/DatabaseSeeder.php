@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Tutor;
-use App\Models\Order;
+use App\Models\Contratacion;
 use App\Models\Role;
 use App\Models\Menor;
 use App\Models\Cuidador;
@@ -27,17 +27,18 @@ class DatabaseSeeder extends Seeder
         Schema::disableForeignKeyConstraints();
 
         DB::table('role_user')->truncate();
-        DB::table('orders')->truncate();
-        DB::table('tutors')->truncate();
         DB::table('users')->truncate();
+        DB::table('tutors')->truncate();
         DB::table('cuidadors')->truncate();
         DB::table('menors')->truncate();
+        DB::table('contratacions')->truncate();
         DB::table('roles')->truncate();
 
         self::seedAdministrador();
         self::seedTutor();
         self::seedCuidador();
         self::seedMenor();
+        self::seedContratacion();
 
         Model::reguard();
 
@@ -63,7 +64,7 @@ class DatabaseSeeder extends Seeder
     }
 
     private function seedTutor() {
-        $userTutors = User::factory(30)->create();
+        $userTutors = User::factory(20)->create();
 
         $roleTutor = Role::create([
             'first_name' => 'Tutor'
@@ -99,7 +100,12 @@ class DatabaseSeeder extends Seeder
     }
 
     private function seedMenor() {
-         $userMenors = Menor::factory(30)
+         $menors = Menor::factory(30)
          ->create();
     }
+
+    private function seedContratacion() {
+        $contratacions = Contratacion::factory(8)
+        ->create();
+   }
 }

@@ -21,6 +21,7 @@ class CreateCuidadorsTable extends Migration
             $table->string('direction');
             $table->string('tlf', 9)->unique();
             $table->enum('tipo', ['Centro', 'Particular']);
+            $table->float('tarifa', 4, 2);
             $table->integer('valoration');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');

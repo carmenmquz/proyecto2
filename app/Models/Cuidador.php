@@ -16,6 +16,7 @@ class Cuidador extends Model
         'email',
         'direction',
         'tlf',
+        'tarifa',
         'valoration'
     ];
 

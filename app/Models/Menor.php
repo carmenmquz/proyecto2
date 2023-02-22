@@ -16,7 +16,7 @@ class Menor extends Model
         'edad'
     ];
 
-    public function tutors() //pertenece a Tutor
+    public function tutor() //pertenece a Tutor
     {
         return $this->belongsTo(Tutor::class, 'tutor_id');
     }
