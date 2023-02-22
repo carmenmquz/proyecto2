@@ -3,8 +3,11 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Psr\Http\Message\ServerRequestInterface;
-use App\Http\Controllers\API\TutorController;
 use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\TutorController;
+use App\Http\Controllers\API\CuidadorController;
+use App\Http\Controllers\API\MenorController;
+use App\Http\Controllers\API\ContratacionController;
 use Tqdev\PhpCrudApi\Api;
 use Tqdev\PhpCrudApi\Config\Config;
 use App\Http\Controllers\API\TokenController;
@@ -32,11 +35,15 @@ Route::post('tokens', [TokenController::class, 'store']);
 // elimina el token del usuario autenticado
 Route::delete('tokens', [TokenController::class, 'destroy'])->middleware('auth:sanctum');
 
-Route::apiResource('tutors', TutorController::class)->middleware('auth:sanctum'); //para que nos pida autorización
+Route::apiResource('usuarios', UserController::class);
 
-Route::apiResource('users', UserController::class);
+Route::apiResource('tutores', TutorController::class)->middleware('auth:sanctum'); //para que nos pida autorización
 
-Route::apiResource('orders', OrderController::class)->middleware('auth:sanctum');
+Route::apiResource('cuidadores', CuidadorController::class)->middleware('auth:sanctum');
+
+Route::apiResource('menores', MenorController::class)->middleware('auth:sanctum');
+
+Route::apiResource('contrataciones', ContratacionController::class)->middleware('auth:sanctum');
 
 Route::post('/avatars', [AvatarController::class, 'store'])->middleware('auth:sanctum');
 

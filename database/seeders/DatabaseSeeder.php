@@ -36,8 +36,8 @@ class DatabaseSeeder extends Seeder
 
         self::seedAdministrador();
         self::seedTutor();
-        self::seedCuidador();
         self::seedMenor();
+        self::seedCuidador();
         self::seedContratacion();
 
         Model::reguard();
@@ -64,20 +64,14 @@ class DatabaseSeeder extends Seeder
     }
 
     private function seedTutor() {
-        $userTutors = User::factory(20)->create();
+        $userTutors = User::factory(8)->create();
 
         $roleTutor = Role::create([
             'first_name' => 'Tutor'
         ]);
 
-       foreach ($userTutors as $userTutor) {
-        Tutor::factory(1)->create([
-            'user_id' => $userTutor->id,
-            'first_name' => $userTutor->first_name,
-            'last_name' => $userTutor->last_name,
-            'email' => $userTutor->email
-        ]);
-           $userTutor->roles()->attach($roleTutor->id);
+        foreach ($userTutors as $userTutor) {
+            $userTutor->roles()->attach($roleTutor->id);
         }
     }
 
@@ -88,24 +82,16 @@ class DatabaseSeeder extends Seeder
             'first_name' => 'Cuidador'
         ]);
 
-       foreach ($userCuidadors as $userCuidador) {
-           Cuidador::factory(1)->create([
-               'user_id' => $userCuidador->id,
-               'first_name' => $userCuidador->first_name,
-               'last_name' => $userCuidador->last_name,
-               'email' => $userCuidador->email
-           ]);
-           $userCuidador->roles()->attach($roleCuidador->id);
-       }
+        foreach ($userCuidadors as $userCuidador) {
+            $userCuidador->roles()->attach($roleCuidador->id);
+        }
     }
 
     private function seedMenor() {
-         $menors = Menor::factory(30)
-         ->create();
+        Menor::factory(8)->create();
     }
 
     private function seedContratacion() {
-        $contratacions = Contratacion::factory(8)
-        ->create();
+        Contratacion::factory(15)->create();
    }
 }
