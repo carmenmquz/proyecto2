@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateContratacionTable extends Migration
+class CreateContratacionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateContratacionTable extends Migration
      */
     public function up()
     {
-        Schema::create('contratacion', function (Blueprint $table) {
+        Schema::create('contratacions', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('tutor_id');
             $table->foreign('tutor_id')->references('id')->on('tutors');
@@ -21,8 +21,9 @@ class CreateContratacionTable extends Migration
             $table->foreign('cuidador_id')->references('id')->on('cuidadors');
             $table->unsignedBigInteger('menor_id');
             $table->foreign('menor_id')->references('id')->on('menors');
-            $table->time('fechainicio');
-            $table->time('fechafin');
+            $table->dateTime('fechainicio');
+            $table->dateTime('fechafin');
+            $table->float('pago', 4, 2);
             $table->timestamps();
         });
     }
@@ -34,6 +35,6 @@ class CreateContratacionTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('contratacion');
+        Schema::dropIfExists('contratacions');
     }
 }

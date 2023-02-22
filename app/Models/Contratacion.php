@@ -17,17 +17,17 @@ class Contratacion extends Model
         'fechafin'
     ];
 
-    public function tutors()
+    public function tutor()
     {
         return $this->belongsTo(Tutor::class, 'tutor_id');
     }
 
-    public function cuidadors()
+    public function cuidador()
     {
         return $this->belongsTo(Cuidador::class, 'cuidador_id');
     }
 
-    public function menors()
+    public function menor()
     {
         return $this->belongsTo(Menor::class, 'menor_id');
     }
