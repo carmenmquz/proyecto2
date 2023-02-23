@@ -23,8 +23,8 @@ class ContratacionResource extends JsonResource
                 'cuidador' => new CuidadorResource($this->cuidador),
                 'menor_id' => $this->menor_id,
                 'menor' => new MenorResource($this->menor),
-                'fechainicio' => $this->fechainicio,
-                'fechafin' => $this->fechafin,
+                'fecha_inicio' => $this->fecha_inicio,
+                'fecha_fin' => $this->fecha_fin,
             ]
         ];
     }

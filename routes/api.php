@@ -6,6 +6,7 @@ use Psr\Http\Message\ServerRequestInterface;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\TutorController;
 use App\Http\Controllers\API\CuidadorController;
+use App\Http\Controllers\API\GuarderiaController;
 use App\Http\Controllers\API\MenorController;
 use App\Http\Controllers\API\ContratacionController;
 use Tqdev\PhpCrudApi\Api;
@@ -40,6 +41,8 @@ Route::apiResource('usuarios', UserController::class);
 Route::apiResource('tutores', TutorController::class)->middleware('auth:sanctum'); //para que nos pida autorización
 
 Route::apiResource('cuidadores', CuidadorController::class)->middleware('auth:sanctum');
+
+Route::get('guarderias', [GuarderiaController::class, 'index'])->middleware('auth:sanctum');
 
 Route::apiResource('menores', MenorController::class)->middleware('auth:sanctum');
 

@@ -13,8 +13,8 @@ class Contratacion extends Model
         'tutor_id',
         'cuidador_id',
         'menor_id',
-        'fechainicio',
-        'fechafin'
+        'fecha_inicio',
+        'fecha_fin'
     ];
 
     public function tutor()

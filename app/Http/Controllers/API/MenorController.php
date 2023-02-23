@@ -29,7 +29,7 @@ class MenorController extends Controller
     {
         $numElementos = $request->input('numElements');
 
-        $registros = searchByField(array('first_name', 'last_name', 'email', 'direction', 'tlf', 'valoration'), Menor::class);
+        $registros = Menor::whereIn('id', $request->input('filter')['id']);
 
         return MenorResource::collection($registros->paginate($numElementos));
     }
