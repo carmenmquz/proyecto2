@@ -17,7 +17,6 @@ class GuarderiaController extends Controller
      */
     public function index()
     {
-
         $urlGuarderiasAPI = "https://datosabiertos.regiondemurcia.es/catalogo/api/action//datastore_search_sql?sql=SELECT%20*%20from%20%221e1e7cd9-ca2a-4a35-a07c-f7bc62f3a91f%22";
         $response = Http::get($urlGuarderiasAPI);
         $decodificar = json_decode($response, true);
