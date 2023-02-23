@@ -21,8 +21,8 @@ class CreateContratacionsTable extends Migration
             $table->foreign('cuidador_id')->references('id')->on('cuidadors');
             $table->unsignedBigInteger('menor_id');
             $table->foreign('menor_id')->references('id')->on('menors');
-            $table->dateTime('fechainicio');
-            $table->dateTime('fechafin');
+            $table->dateTime('fecha_inicio');
+            $table->dateTime('fecha_fin');
             $table->float('pago', 4, 2);
             $table->timestamps();
         });

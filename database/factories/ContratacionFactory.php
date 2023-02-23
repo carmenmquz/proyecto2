@@ -17,16 +17,16 @@ class ContratacionFactory extends Factory
     public function definition()
     {
         $tutor = Tutor::factory()->create();
-        $fechainicio = $this->faker->dateTimeBetween('2023-01-01', 'now');
-        $fechafin = clone $fechainicio;
+        $fecha_inicio = $this->faker->dateTimeBetween('2023-01-01', 'now');
+        $fecha_fin = clone $fecha_inicio;
         $randomHours = $this->faker->numberBetween(1, 9);
-        $fechafin->modify("+$randomHours hours");
+        $fecha_fin->modify("+$randomHours hours");
         return [
             'tutor_id' => $tutor->id,
             'cuidador_id' => Cuidador::factory()->create(),
             'menor_id' => Menor::factory()->create(['tutor_id' => $tutor->id]),
-            'fechainicio' => $fechainicio,
-            'fechafin' => $fechafin,
+            'fecha_inicio' => $fecha_inicio,
+            'fecha_fin' => $fecha_fin,
             'pago' => $this->faker->randomFloat(2, 7, 50),
         ];
     }
