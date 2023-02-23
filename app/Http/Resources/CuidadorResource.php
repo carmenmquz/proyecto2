@@ -23,7 +23,6 @@ class CuidadorResource extends JsonResource
                 'email' => $this->email,
                 'direction' => $this->direction,
                 'tlf' => $this->tlf,
-                'tipo' => $this->tipo,
                 'tarifa' => $this->tarifa,
                 'valoration' => $this->valoration,
                 'user_id' => $this->user_id,

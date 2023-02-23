@@ -29,7 +29,7 @@ class CuidadorController extends Controller
     {
         $numElementos = $request->input('numElements');
 
-        $registros = searchByField(array('first_name', 'last_name', 'email', 'direction', 'tlf', 'tipo', 'tarifa', 'valoration'), Cuidador::class);
+        $registros = searchByField(array('first_name', 'last_name', 'email', 'direction', 'tlf', 'tarifa', 'valoration'), Cuidador::class);
 
         return CuidadorResource::collection($registros->paginate($numElementos));
     }

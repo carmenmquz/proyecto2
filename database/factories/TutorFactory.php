@@ -17,8 +17,8 @@ class TutorFactory extends Factory
         $user = User::factory()->create();
         $this->faker = \Faker\Factory::create('es_ES');
         return [
-            'first_name' => $user->first_name,
-            'last_name' => $user->last_name,
+            'first_name' => $user->name,
+            'last_name' => $this->faker->lastName(),
             'email' => $user->email,
             'direction' => $this->faker->streetAddress(),
             'tlf' => $this->faker->randomNumber(9, true),

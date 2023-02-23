@@ -19,9 +19,9 @@ class CreateTutorsTable extends Migration
             $table->string('first_name', 50);
             $table->string('last_name', 50)->nullable();
             $table->string('email')->unique();
-            $table->string('direction');
-            $table->string('tlf', 9)->unique();
-            $table->integer('valoration');
+            $table->string('direction')->nullable();
+            $table->string('tlf', 9)->nullable();
+            $table->integer('valoration')->nullable();
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
