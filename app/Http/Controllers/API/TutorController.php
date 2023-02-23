@@ -28,8 +28,12 @@ class TutorController extends Controller
     public function index(Request $request)
     {
         $numElementos = $request->input('numElements');
+        if ($request->has('filter')) {
+            $registros = Tutor::whereIn('id', $request->input('filter')['id']);
+        } else {
+            $registros = searchByField(array('first_name', 'last_name', 'email', 'direction', 'tlf', 'valoration'), Tutor::class);
+        }
 
-        $registros = Tutor::whereIn('id', $request->input('filter')['id']);
 
         return TutorResource::collection($registros->paginate($numElementos));
     }
