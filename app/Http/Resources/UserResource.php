@@ -16,14 +16,13 @@ class UserResource extends JsonResource
     {
         // return parent::toArray($request);
         $tutor = $this->tutor;
-        $first_name = $tutor
+        $name = $tutor
               ? $tutor->first_name . ' ' . $tutor->locale_get_display_name
-              : $this->first_name;
+              : $this->name;
         return [
             'id' => $this->id,
             'attributes' => [
-                'first_name' => $first_name,
-                'last_name' => $this->last_name,
+                'name' => $name,
                 'email' => $this->email,
                 // 'tutor' => new TutorResource($this->tutor)
                 'roles' => RoleResource::collection($this->roles)

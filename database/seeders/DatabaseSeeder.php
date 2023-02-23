@@ -47,8 +47,7 @@ class DatabaseSeeder extends Seeder
 
     private function seedAdministrador() {
         $userAdmin = User::create([
-            'first_name' => env('DB_USERNAME'),
-            'last_name' => env('DB_LASTNAME'),
+            'name' => env('DB_USERNAME'),
             'email' => env('DB_EMAIL'),
             'password' => bcrypt(env('DB_PASSWORD')),
             'email_verified_at' => now()

@@ -18,8 +18,11 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $numElementos = $request->input('numElements');
-
-        $registros = searchByField(array('first_name', 'last_name', 'email'), User::class);
+        if ($request->has('filter')) {
+            $registros = User::whereIn('id', $request->input('filter')['id']);
+        } else {
+            $registros = searchByField(array('name', 'email'), User::class);
+        }
 
         return UserResource::collection($registros->paginate($numElementos));
     }
