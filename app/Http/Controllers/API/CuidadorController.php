@@ -11,15 +11,11 @@ class CuidadorController extends Controller
 {
     public function index(Request $request)
     {
-        $busqueda = $request->input('filter');
         $numElementos = $request->input('numElements');
-        $registrosCuidadores =
-            ($busqueda && array_key_exists('q', $busqueda))
-            ? Cuidador::where('name', 'like', '%' .$busqueda['q'] . '%')
-                ->paginate($numElementos)
-            : Cuidador::paginate($numElementos);
 
-            return CuidadorResource::collection($registrosCuidadores);
+        $registrosCuidadores = searchByField(array('name', 'email'), Cuidador::class);
+
+        return CuidadorResource::collection($registrosCuidadores->paginate($numElementos));
     }
 
     public function store(Request $request)

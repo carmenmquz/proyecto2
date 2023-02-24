@@ -20,8 +20,8 @@ class Tutor extends Model
         'ciudad',
         'sexo',
         'telefono'
-
     ];
+
     public function menores()
     {
         return $this->hasMany(Menor::class, 'tutor_id');
@@ -29,6 +29,6 @@ class Tutor extends Model
 
     public function users()
     {
-        return $this->hasMany(User::class, 'tutor_id');
+        return $this->belongsTo(User::class, 'tutor_id');
     }
 }

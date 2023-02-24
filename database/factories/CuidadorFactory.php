@@ -17,7 +17,7 @@ class CuidadorFactory extends Factory
         return [
             'name' => $this->faker->name(),
             'direccion' => $this->faker->streetAddress(),
-            'edad' => $this->faker->randomDigit(0),
+            'edad' => $this->faker->numberBetween(20, 40),
             'telefono' => $this->faker->phoneNumber(),
         ];
     }

@@ -24,6 +24,6 @@ class Menor extends Model
     }
     public function cuidador()
     {
-        return $this->belongsToMany(Cuidador::class, 'contratacion', 'menor_id', 'cuidador_id');
+        return $this->belongsToMany(Cuidador::class, 'contrataciones', 'menor_id', 'cuidador_id');
     }
 }

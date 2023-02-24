@@ -4,8 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use App\Models\Customer;
 use App\Models\User;
+use App\Models\Tutor;
 use App\Models\Order;
 use App\Models\Role;
 

@@ -11,15 +11,11 @@ class MenorController extends Controller
 {
     public function index(Request $request)
     {
-        $busqueda = $request->input('filter');
         $numElementos = $request->input('numElements');
-        $registrosMenores =
-            ($busqueda && array_key_exists('q', $busqueda))
-            ? Menor::where('name', 'like', '%' .$busqueda['q'] . '%')
-                ->paginate($numElementos)
-            : Menor::paginate($numElementos);
 
-            return MenorResource::collection($registrosMenores);
+        $registrosMenores = searchByField(array('name', 'email'), Menor::class);
+
+        return MenorResource::collection($registrosMenores->paginate($numElementos));
     }
 
     public function store(Request $request)

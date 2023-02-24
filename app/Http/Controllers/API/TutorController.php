@@ -9,17 +9,19 @@ use App\Http\Resources\TutorResource;
 
 class TutorController extends Controller
 {
+
+    // public function __construct()
+    // {
+    //     $this->authorizeResource(Tutor::class, 'tutor');
+    // }
+
     public function index(Request $request)
     {
-        $busqueda = $request->input('filter');
         $numElementos = $request->input('numElements');
-        $registrosTutores =
-            ($busqueda && array_key_exists('q', $busqueda))
-            ? Tutor::where('name', 'like', '%' .$busqueda['q'] . '%')
-                ->paginate($numElementos)
-            : Tutor::paginate($numElementos);
 
-            return TutorResource::collection($registrosTutores);
+        $registrosTutores = searchByField(array('name', 'email'), Tutor::class);
+
+        return TutorResource::collection($registrosTutores->paginate($numElementos));
     }
 
     public function store(Request $request)

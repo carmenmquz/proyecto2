@@ -10,6 +10,12 @@ use App\Http\Resources\UserResource;
 
 class UserController extends Controller
 {
+
+    // public function __construct()
+    // {
+    //     $this->authorizeResource(User::class, 'user');
+    // }
+
     /**
      * Display a listing of the resource.
      *
@@ -18,18 +24,8 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $numElementos = $request->input('numElements');
-        $busquedaArray = [
-            'name',
-            'email',
-        ];
-        $busquedaFiltroQ = $request->input('filter');
-        $registrosUsuario = User::query();
-        if($busquedaFiltroQ && array_key_exists('q', $busquedaFiltroQ)) {
-            foreach($busquedaArray as $fieldName) {
-                $registrosUsuario = $registrosUsuario
-                  ->orWhere($fieldName, 'like', '%' .$busquedaFiltroQ['q'] . '%');
-                }
-            }
+
+        $registrosUsuario = searchByField(array('name', 'email'), User::class);
 
         return UserResource::collection($registrosUsuario->paginate($numElementos));
     }
