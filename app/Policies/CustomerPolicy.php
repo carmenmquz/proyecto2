@@ -2,27 +2,25 @@
 
 namespace App\Policies;
 
-use App\Models\Tutor;
+use App\Models\Customer;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class TutorPolicy
+class CustomerPolicy
 {
     use HandlesAuthorization;
 
-    /**
-     * Perform pre-authorization checks.
-     *
-     * @param  \App\Models\User  $user
-     * @param  string  $ability
-     * @return void|bool
-     */
-    public function before(User $user, $ability)
-    {
-        if ($user->id === 1) return true; //el 1 puede hacer cualquier cosa, pero el resto solo puede hacer aquellos métodos
-        //que devuelvan un true
-    }
-
+   /**
+   * Perform pre-authorization checks.
+   *
+   * @param  \App\Models\User  $user
+   * @param  string  $ability
+   * @return void|bool
+   */
+   public function before(User $user, $ability)
+   {
+         if ($user->id === 1) return true;
+   }
     /**
      * Determine whether the user can view any models.
      *
@@ -38,14 +36,12 @@ class TutorPolicy
      * Determine whether the user can view the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Tutor  $tutor
+     * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Tutor $tutor)
+    public function view(User $user, Customer $customer)
     {
-        return $user->id === $tutor->user_id;
-        //si quiero que lo pueda ver todo el mundo, le ponemos un return true; pero no podemos porque
-        //la seguridad y la protección de datos no la cumpliríamos
+        //
     }
 
     /**
@@ -63,22 +59,22 @@ class TutorPolicy
      * Determine whether the user can update the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Tutor  $tutor
+     * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Tutor $tutor)
+    public function update(User $user, Customer $customer)
     {
-        return $user->id === $tutor->user_id;
+        return $user->id === $customer->user_id;
     }
 
     /**
      * Determine whether the user can delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Tutor  $tutor
+     * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function delete(User $user, Tutor $tutor)
+    public function delete(User $user, Customer $customer)
     {
         //
     }
@@ -87,10 +83,10 @@ class TutorPolicy
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Tutor  $tutor
+     * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function restore(User $user, Tutor $tutor)
+    public function restore(User $user, Customer $customer)
     {
         //
     }
@@ -99,10 +95,10 @@ class TutorPolicy
      * Determine whether the user can permanently delete the model.
      *
      * @param  \App\Models\User  $user
-     * @param  \App\Models\Tutor  $tutor
+     * @param  \App\Models\Customer  $customer
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function forceDelete(User $user, Tutor $tutor)
+    public function forceDelete(User $user, Customer $customer)
     {
         //
     }
