@@ -31,6 +31,10 @@ class TutorController extends Controller
 
         $tutor = Tutor::create($tutorData);
 
+        $request->validate([
+            'user_id'=>'required'
+        ]);
+
         return new TutorResource($tutor);
     }
 
