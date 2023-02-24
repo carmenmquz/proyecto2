@@ -31,6 +31,6 @@ class Tutor extends Model
 
     public function menor() //hasMany significa que cada Tutor puede tener varios Menor
     {
-        return $this->hasMany(Menor::class, 'tutor_id');
+        return $this->hasOne(Menor::class, 'tutor_id');
     }
 }

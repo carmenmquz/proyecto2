@@ -28,12 +28,12 @@ class TutorController extends Controller
     public function index(Request $request)
     {
         $numElementos = $request->input('numElements');
+
         if ($request->has('filter')) {
             $registros = Tutor::whereIn('id', $request->input('filter')['id']);
         } else {
-            $registros = searchByField(array('first_name', 'last_name', 'email', 'direction', 'tlf', 'valoration'), Tutor::class);
+            $registros = searchByField(array('first_name', 'last_name'), Tutor::class);
         }
-
 
         return TutorResource::collection($registros->paginate($numElementos));
     }
@@ -47,11 +47,11 @@ class TutorController extends Controller
     public function store(Request $request)
     {
 
-        if ($request->user()->cannot('create', Tutor::class)) {
-            abort(403);
-        }
+        // if ($request->user()->cannot('create', Tutor::class)) {
+        //     abort(403);
+        // }
 
-        $this->authorize('create', Tutor::class);
+        //$this->authorize('create', Tutor::class);
 
         $tutor = json_decode($request->getContent(), true);
 
@@ -80,11 +80,11 @@ class TutorController extends Controller
      */
     public function update(Request $request, Tutor $tutor)
     {
-        if ($request->user()->cannot('update', $tutor)) {
-            abort(403);
-        }
+        // if ($request->user()->cannot('update', $tutor)) {
+        //     abort(403);
+        // }
 
-        $this->authorize('update', $tutor);
+        // $this->authorize('update', $tutor);
         $tutorData = json_decode($request->getContent(), true);
         $tutor->update($tutorData['data']['attributes']);
 
