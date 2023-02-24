@@ -16,7 +16,17 @@ class TutorResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'attributes' => parent::toArray($request)
+            'attributes' => [
+                'name' => $this->name,
+                'email' => $this->email,
+                'imagen' => $this->imagen,
+                'pais' => $this->pais,
+                'ciudad' => $this->ciudad,
+                'sexo' => $this->sexo,
+                'telefono' => $this->telefono,
+                'user_id' => $this->user_id,
+                'user' => new UserResource($this->user),
+            ]
         ];
     }
 }

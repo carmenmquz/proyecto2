@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddTutorIdToUserTable extends Migration
+class AddUserIdToTutorTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class AddTutorIdToUserTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->bigInteger('tutor_id')->unsigned()->nullable();
-            $table->foreign('tutor_id')->references('id')->on('tutores');
+        Schema::table('tutores', function (Blueprint $table) {
+            $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 
@@ -26,8 +26,8 @@ class AddTutorIdToUserTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('tutor_id');
+        Schema::table('tutores', function (Blueprint $table) {
+            $table->dropColumn('user_id');
         });
     }
 }

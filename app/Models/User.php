@@ -43,16 +43,12 @@ class User extends Authenticatable
     ];
 
     /**
-     * Devolver el customer asociado.
+     * Devolver el tutor asociado.
      */
-    public function customer()
-    {
-        return $this->hasOne(Customer::class, 'user_id');
-    }
 
     public function tutor()
     {
-        return $this->belongsTo(Tutor::class, 'tutor_id');
+        return $this->hasOne(Tutor::class, 'user_id');
     }
 
     /**
@@ -67,7 +63,7 @@ class User extends Authenticatable
         $roles = $this->roles;
         $isAdmin = false;
         foreach ($roles as $role) {
-            if($role->name == 'admin') {
+            if($role->name === 'Admin') {
                 $isAdmin = true;
             }
         }

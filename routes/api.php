@@ -36,7 +36,7 @@ Route::post('tokens', [TokenController::class, 'store']);
 // elimina el token del usuario autenticado
 Route::delete('tokens', [TokenController::class, 'destroy'])->middleware('auth:sanctum');
 
-Route::apiResource('usuarios', UserController::class);
+Route::apiResource('usuarios', UserController::class)->middleware('auth:sanctum');
 
 Route::apiResource('tutores', TutorController::class)->middleware('auth:sanctum'); //para que nos pida autorización
 

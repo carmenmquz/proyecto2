@@ -3,74 +3,49 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\Order;
 use Illuminate\Http\Request;
-use App\Http\Resources\OrderResource;
+use App\Models\Contratacion;
+use App\Http\Resources\ContratacionResource;
 
-
-class OrderController extends Controller
+class ContratacionController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index(Request $request)
     {
-        $user = $request->user();
+        $numElementos = $request->input('numElements');
 
-        if($user->isAdmin()) {
+        $registrosContrataciones = searchByField(array('name'), Contratacion::class);
 
-         $orders = Order::all();
-        } else {
-            $orders = $user->customer->orders;
-        }
-
-        return OrderResource::collection($orders);
+        return ContratacionResource::collection($registrosContrataciones->paginate($numElementos));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        $contratacion = json_decode($request->getContent(), true);
+        $contratacionData = $contratacion['data']['attributes'];
+
+        $contratacion = Contratacion::create($contratacionData);
+
+        return new ContratacionResource($contratacion);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Order $order)
+
+    public function show(Contratacion $contratacion)
     {
-        //
+        return new ContratacionResource($contratacion);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Order $order)
+
+    public function update(Request $request, Contratacion $contratacion)
     {
-        //
+        $contratacionData = json_decode($request->getContent(), true);
+        $contratacion->update($contratacionData['data']['attributes']);
+
+        return new ContratacionResource($contratacion);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Order  $order
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Order $order)
+
+    public function destroy(Contratacion $contratacion)
     {
-        //
+        $contratacion->delete();
     }
 }

@@ -20,11 +20,10 @@ class DatabaseSeeder extends Seeder
         Schema::disableForeignKeyConstraints();
 
         DB::table('orders')->truncate();
-        DB::table('customers')->truncate();
         DB::table('users')->truncate();
         DB::table('roles')->truncate();
         DB::table('role_user')->truncate();
-        DB::table('contratacion')->truncate();
+        DB::table('contrataciones')->truncate();
 
     $this->call(UsersTableSeeder::class);
     $this->call(TutoresTableSeeder::class);

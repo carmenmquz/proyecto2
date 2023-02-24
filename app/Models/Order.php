@@ -5,12 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Order extends Model
+class Cuidador extends Model
 {
     use HasFactory;
 
-    public function customer()
-    {
-        return $this->belongsTo(Customer::class, 'customer_id');
-    }
+    // protected $table = "contrataciones";
+
+    // protected $fillable = [
+    //     'cuidador_id',
+    //     'menor_id'
+    // ];
+
+    // public function menores()
+    // {
+    //     return $this->belongsTo(Menor::class, 'menor_id');
+    // }
+
+    // public function cuidadores()
+    // {
+    //     return $this->belongsTo(Cuidador::class, 'menor_id');
+    // }
 }
