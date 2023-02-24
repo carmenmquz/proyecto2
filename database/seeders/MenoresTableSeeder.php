@@ -44,7 +44,7 @@ class MenoresTableSeeder extends Seeder
         ]);
 
         $menores = Menor::factory()->count(5)
-        ->has(Cuidador::factory()->count(2))
+        ->has(Cuidador::factory()->count(1))
         ->create();
 
     }

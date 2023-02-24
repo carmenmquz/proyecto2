@@ -16,15 +16,14 @@ class Menor extends Model
         'name',
         'edad',
         'detalles',
-        'tutor_id',
-        'cuidador_id'
+        'tutor_id'
     ];
     public function tutor()
     {
         return $this->belongsTo(Tutor::class, 'tutor_id');
     }
-    public function cuidadores()
+    public function cuidador()
     {
-        return $this->belongsToMany(Cuidador::class, 'tutor_menor', 'menor_id', 'tutor_id');
+        return $this->belongsToMany(Cuidador::class, 'contratacion', 'menor_id', 'cuidador_id');
     }
 }
