@@ -24,7 +24,7 @@ class AvatarController extends Controller
         return Storage::get($user->avatar);
     }
 
-    public function getUserAvatar($user_id)
+    public function getAvatars($user_id)
     {
         $user = User::findOrFail($user_id);
         return Storage::get($user->avatar);

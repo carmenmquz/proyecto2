@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class CuidadorResource extends JsonResource
+class OrderResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,12 +14,9 @@ class CuidadorResource extends JsonResource
      */
     public function toArray($request)
     {
-        $menores = MenorResource::collection($this->menores);
         return [
             'id' => $this->id,
-            'attributes' => parent::toArray($request)+[
-                'menores' => $menores
-            ]
+            'attributes' => parent::toArray($request)
         ];
     }
 }
