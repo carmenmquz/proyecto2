@@ -63,7 +63,8 @@ class DatabaseSeeder extends Seeder
     }
 
     private function seedTutor() {
-        $userTutors = User::factory(8)->create();
+        Tutor::factory(8)->create();
+        $userTutors = User::factory();
 
         $roleTutor = Role::create([
             'first_name' => 'Tutor'
@@ -75,7 +76,8 @@ class DatabaseSeeder extends Seeder
     }
 
     private function seedCuidador() {
-        $userCuidadors = User::factory(15)->create();
+        Cuidador::factory(15)->create();
+        $userCuidadors = User::factory();
 
         $roleCuidador = Role::create([
             'first_name' => 'Cuidador'
