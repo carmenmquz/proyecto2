@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class RoleFactory extends Factory
+class CustomerFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -15,7 +15,11 @@ class RoleFactory extends Factory
     {
         $this->faker = \Faker\Factory::create('es_ES');
         return [
-            'name' => $this->faker->jobTitle()
+            'first_name' => $this->faker->firstName(),
+            'last_name' => $this->faker->lastName(),
+            'job_title' => $this->faker->word(),
+            'city' => $this->faker->city(),
+            'country' => $this->faker->country()
         ];
     }
 }

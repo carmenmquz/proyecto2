@@ -3,7 +3,6 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use App\Models\User;
 
 class TutorFactory extends Factory
 {
@@ -14,16 +13,15 @@ class TutorFactory extends Factory
      */
     public function definition()
     {
-        $user = User::factory()->create();
         $this->faker = \Faker\Factory::create('es_ES');
         return [
-            'first_name' => $user->name,
-            'last_name' => $this->faker->lastName(),
-            'email' => $user->email,
-            'direction' => $this->faker->streetAddress(),
-            'tlf' => $this->faker->randomNumber(9, true),
-            'valoration' => $this->faker->numberBetween(1, 5, true),
-            'user_id' => $user->id
+            'name' => $this->faker->name(),
+            'email' => $this->faker->unique()->safeEmail(),
+            'imagen' => $this->faker->imageUrl(),
+            'pais' => $this->faker->country(),
+            'ciudad' => $this->faker->city(),
+            'sexo' => $this->faker->randomElement(['Hombre', 'Mujer']),
+            'telefono' => $this->faker->mobileNumber(),
         ];
     }
 }
