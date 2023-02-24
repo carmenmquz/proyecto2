@@ -14,12 +14,11 @@ class MenorFactory extends Factory
      */
     public function definition()
     {
-        $this->faker = \Faker\Factory::create('es_ES');
         return [
-            'first_name' => $this->faker->firstName(),
-            'last_name' => $this->faker->lastName(),
-            'edad' => $this->faker->numberBetween(1, 17, true),
-            'tutor_id' => Tutor::factory()
+            'name' => $this->faker->name(),
+            'edad' => $this->faker->numberBetween(1, 17),
+            'detalles' => $this->faker->word(),
+            'tutor_id' => Tutor::all()->random()->id,
         ];
     }
 }

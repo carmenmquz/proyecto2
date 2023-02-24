@@ -8,29 +8,27 @@ use Illuminate\Database\Eloquent\Model;
 class Tutor extends Model
 {
     use HasFactory;
+
+    protected $table = "tutores";
+
     protected $fillable = [
         'id',
-        'user_id',
-        'first_name',
-        'last_name',
+        'name',
         'email',
-        'direction',
-        'tlf',
-        'valoration'
+        'imagen',
+        'pais',
+        'ciudad',
+        'sexo',
+        'telefono'
+
     ];
-
-    public function user()
+    public function menores()
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->hasMany(Menor::class, 'tutor_id');
     }
 
-    public function contratacion()
+    public function users()
     {
-        return $this->hasMany(Contratacion::class, 'tutor_id');
-    }
-
-    public function menor() //hasMany significa que cada Tutor puede tener varios Menor
-    {
-        return $this->hasOne(Menor::class, 'tutor_id');
+        return $this->hasMany(User::class, 'tutor_id');
     }
 }

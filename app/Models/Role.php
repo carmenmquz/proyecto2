@@ -13,6 +13,9 @@ class Role extends Model
         'name',
     ];
 
+    /**
+     * Los usuarios que tiene asignados un determinado role.
+     */
     public function users()
     {
         return $this->belongsToMany(User::class, 'role_user', 'role_id', 'user_id');

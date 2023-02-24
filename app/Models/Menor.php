@@ -8,21 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 class Menor extends Model
 {
     use HasFactory;
+
+    protected $table = "menores";
+
     protected $fillable = [
         'id',
+        'name',
+        'edad',
+        'detalles',
         'tutor_id',
-        'first_name',
-        'last_name',
-        'edad'
+        'cuidador_id'
     ];
-
-    public function tutor() //pertenece a Tutor
+    public function tutor()
     {
         return $this->belongsTo(Tutor::class, 'tutor_id');
     }
-
-    public function contratacion()
+    public function cuidadores()
     {
-        return $this->hasMany(Contratacion::class, 'menor_id');
+        return $this->belongsToMany(Cuidador::class, 'tutor_menor', 'menor_id', 'tutor_id');
     }
 }

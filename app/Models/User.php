@@ -42,35 +42,35 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-     /**
-     * Devolver el tutor asociado.
+    /**
+     * Devolver el customer asociado.
      */
+    public function customer()
+    {
+        return $this->hasOne(Customer::class, 'user_id');
+    }
+
     public function tutor()
     {
-        return $this->hasOne(Tutor::class, 'user_id');
+        return $this->belongsTo(Tutor::class, 'tutor_id');
     }
 
-    public function cuidador()
-    {
-        return $this->hasOne(Cuidador::class, 'user_id');
-    }
-
+    /**
+     * Los roles que tiene asignados un determinado usuario.
+     */
     public function roles()
     {
         return $this->belongsToMany(Role::class, 'role_user', 'user_id', 'role_id');
     }
-
-    public function isAdmin() {
+    public function isAdmin()
+    {
         $roles = $this->roles;
         $isAdmin = false;
-        foreach($roles as $role){
-            if($role->first_name == 'Admin') {
+        foreach ($roles as $role) {
+            if($role->name == 'admin') {
                 $isAdmin = true;
             }
         }
         return $isAdmin;
-        }
-
-
+    }
 }
-
