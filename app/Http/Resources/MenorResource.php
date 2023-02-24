@@ -14,15 +14,11 @@ class MenorResource extends JsonResource
      */
     public function toArray($request)
     {
-        // return parent::toArray($request);
+        $cuidador = CuidadorResource::collection($this->cuidadores);
         return [
             'id' => $this->id,
-            'attributes' => [
-                'first_name' => $this->first_name,
-                'last_name' => $this->last_name,
-                'edad' => $this->edad,
-                'tutor_id' => $this->tutor_id,
-                'tutor' => new TutorResource($this->tutor),
+            'attributes' => parent::toArray($request)+[
+                'cuidadores' => $cuidador
             ]
         ];
     }

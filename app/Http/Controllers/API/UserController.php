@@ -18,15 +18,21 @@ class UserController extends Controller
     public function index(Request $request)
     {
         $numElementos = $request->input('numElements');
-        if ($request->has('filter')) {
-            $registros = User::whereIn('id', $request->input('filter')['id']);
-        } else {
-            $registros = searchByField(array('name', 'email'), User::class);
-        }
+        $busquedaArray = [
+            'name',
+            'email',
+        ];
+        $busquedaFiltroQ = $request->input('filter');
+        $registrosUsuario = User::query();
+        if($busquedaFiltroQ && array_key_exists('q', $busquedaFiltroQ)) {
+            foreach($busquedaArray as $fieldName) {
+                $registrosUsuario = $registrosUsuario
+                  ->orWhere($fieldName, 'like', '%' .$busquedaFiltroQ['q'] . '%');
+                }
+            }
 
-        return UserResource::collection($registros->paginate($numElementos));
+        return UserResource::collection($registrosUsuario->paginate($numElementos));
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -36,11 +42,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $user = json_decode($request->getContent(), true);
-
-        $user = User::create($user['data']['attributes']);
-
-        return new UserResource($user);
+        //
     }
 
     /**
@@ -51,7 +53,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        return new UserResource($user);
+        //
     }
 
     /**
@@ -63,10 +65,7 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $userData = json_decode($request->getContent(), true);
-        $user->update($userData['data']['attributes']);
-
-        return new UserResource($user);
+        //
     }
 
     /**
@@ -77,6 +76,6 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        $user->delete();
+        //
     }
 }

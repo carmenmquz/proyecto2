@@ -15,18 +15,17 @@ class UserResource extends JsonResource
     public function toArray($request)
     {
         // return parent::toArray($request);
-        $tutor = $this->tutor;
-        $name = $tutor
-              ? $tutor->first_name . ' ' . $tutor->locale_get_display_name
-              : $this->name;
+        $customer = $this->customer;
+        $name = $customer ? $customer->first_name . ' ' . $customer->last_name : $this->name;
         return [
             'id' => $this->id,
             'attributes' => [
                 'name' => $name,
                 'email' => $this->email,
-                // 'tutor' => new TutorResource($this->tutor)
-                'roles' => RoleResource::collection($this->roles)
-                ]
-            ];
+                'roles' => RoleResource::collection($this->roles),
+                'tutor' => $this->tutor_id
+                // customer' => new CustomerResource($this->customer)
+            ]
+        ];
     }
 }

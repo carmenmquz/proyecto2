@@ -14,19 +14,9 @@ class TutorResource extends JsonResource
      */
     public function toArray($request)
     {
-        // return parent::toArray($request);
         return [
             'id' => $this->id,
-            'attributes' => [
-                'first_name' => $this->first_name,
-                'last_name' => $this->last_name,
-                'email' => $this->email,
-                'direction' => $this->direction,
-                'tlf' => $this->tlf,
-                'valoration' => $this->valoration,
-                'user_id' => $this->user_id,
-                'user' => new UserResource($this->user),
-            ]
+            'attributes' => parent::toArray($request)
         ];
     }
 }

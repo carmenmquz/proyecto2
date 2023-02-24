@@ -3,11 +3,12 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Http\Resources\ContratacionResource;
-use App\Models\Contratacion;
+use App\Models\Order;
 use Illuminate\Http\Request;
+use App\Http\Resources\OrderResource;
 
-class ContratacionController extends Controller
+
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,14 +20,14 @@ class ContratacionController extends Controller
         $user = $request->user();
 
         if($user->isAdmin()) {
-            $contratacions = Contratacion::all();
+
+         $orders = Order::all();
         } else {
-            $contratacions = $user->tutor->contratacions;
+            $orders = $user->customer->orders;
         }
 
-        return ContratacionResource::collection($contratacions);
+        return OrderResource::collection($orders);
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -42,10 +43,10 @@ class ContratacionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Contratacion  $contratacion
+     * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show(Contratacion $contratacion)
+    public function show(Order $order)
     {
         //
     }
@@ -54,10 +55,10 @@ class ContratacionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Contratacion  $contratacion
+     * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Contratacion $contratacion)
+    public function update(Request $request, Order $order)
     {
         //
     }
@@ -65,10 +66,10 @@ class ContratacionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Contratacion  $contratacion
+     * @param  \App\Models\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Contratacion $contratacion)
+    public function destroy(Order $order)
     {
         //
     }
